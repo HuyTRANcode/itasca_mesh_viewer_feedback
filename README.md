@@ -1,41 +1,28 @@
 # Itasca Mesh Viewer
 
-<img src="media/icons/extension-icon-256.png" alt="Itasca Mesh Viewer icon" width="128">
+[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://ko-fi.com/htcode)
 
-Interactive VS Code viewer for Itasca FLAC3D/FLAC2D grids, built on VTK.js.
+Interactive VS Code viewer for Itasca FLAC3D/FLAC2D/3DEC grids, built on VTK.js.
 
 ## Features
 
-- Custom editor for `.f3grid`, `.f2grid`, `.grid` (FLAC3D/FLAC2D), plus `.obj` and `.stl`
+- Custom editor for `.f3grid`, `.f2grid`, `.grid` (FLAC3D/FLAC2D), `.3dgrid` (3DEC), plus `.obj`, `.stl`, and `.ply`
 - VTK.js 3D rendering: surface, wireframe, and edges
-- Correct FLAC to VTK cell node ordering (`B8`, `B7`, `W6`, `P5`, `T4`, `Q4`, `T3`)
-- Per-zone colors, with cells colored by FLAC `ZG` zone groups when defined
-- Zone-group legend in the top-right showing group name, slot, and matching color
+- Per-zone colors, with cells colored by FLAC `ZG` zone groups or 3DEC `BGROUP` block groups when defined
+- Zone/block group legend in the top-right showing group name, slot, and matching color
 - Element edge overlay: draws the edges of each zone cell (not triangulation diagonals)
 - Live refresh when the file is saved
-- Info panel: vertex count, zone count, and bounds
+- Info panel: vertex count, zone/block count, and bounds
 
 ## Supported Formats
 
-### FLAC grids (`.f3grid`, `.f2grid`, `.grid`)
-
-The parser reads the native ASCII grid records:
-
-| Record | Meaning |
-|---|---|
-| `G id x y [z]` | Gridpoint (`z` defaults to 0 for FLAC2D) |
-| `Z <type> <id> <gp...>` | Zone: `B8`, `B7`, `W6`, `P5`, `T4`, `Q4`, `T3` |
-| `F <type> <id> <gp...>` | Face: `T3`, `Q4`, `E2` |
-| `ZG`, `FCOLLECTION`, `GPG` | Group definitions (names/slots may contain spaces; `SL` introduces the slot) |
-| `*` | Comment |
-
-FLAC zone nodes are reordered to VTK node order before rendering. A 7-node `B7` zone is expanded to the 8-node hexahedron VTK expects, matching FLAC's `DBrick` handling.
-
-Examples: `examples/brick.f3grid`, `examples/tunnel.f3grid`.
-
-### Other meshes
-
-`.obj` and `.stl` are also supported.
+| Format | Extensions | Description |
+|--------|------------|-------------|
+| FLAC3D/FLAC2D Grid | `.f3grid`, `.f2grid`, `.grid` | Itasca FLAC2D/FLAC3D native grid format |
+| 3DEC Grid | `.3dgrid` | Itasca 3DEC native grid format |
+| Wavefront OBJ | `.obj` | Standard 3D mesh format |
+| STL | `.stl` | Stereolithography mesh format |
+| PLY | `.ply` | Stanford Polygon Library format (ASCII & binary, little/big endian) |
 
 ## Controls
 
@@ -67,12 +54,6 @@ The controls hint stays in the bottom-left.
 ## Installation
 
 Install from the VS Code Marketplace or from a `.vsix` package.
-
-## Support
-
-If you find this extension useful, consider donating:
-
-[![PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=XS2G6TQHD4784)
 
 See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
