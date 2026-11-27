@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0
+
+### New Formats
+- **TIFF Voxel Volume** (`.tif`, `.tiff`) - Multi-page TIFF stacks as hexahedral meshes, supports 8/16/32-bit, strip & tiled, planar & interleaved
+- **Nastran BDF** (`.bdf`, `.nas`, `.dat`, `.fem`) - Volume elements (CHEXA, CTETRA, CPENTA, CPYRAM) with PID-based zone groups
+
 ## 1.2.0
 
 ### New Formats
